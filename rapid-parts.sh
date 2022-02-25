@@ -46,7 +46,7 @@ done <$filename
 if [[ $exe1 == "true" ]];then
   echo "Links are alive for downloads"
    if [[ $exe1 = true ]]; then
-    echo "Downloading..."
+    echo "List of URLs are ALIVE"
   # Remove Empty
   sed '/^((?!https).*$)/d' $filename  > links
   partvalue=$(cat links | grep -oP '(?!https:\/\/rapidgator.net\/file\/.*)\w{11}.part01.rar|\w{11}.part1.rar')
@@ -54,6 +54,7 @@ if [[ $exe1 == "true" ]];then
   strippart01=$(echo $partvalue | grep -oP '(?!https:\/\/rapidgator.net\/file\/.*)\w{11}.part|\w{11}.part')
 
   echo 'The part01 value is: '$partvalue
+  echo "Downloading..."
   #echo 'Rar '$strippart01
   wget --show-progress --no-check-certificate -i links echo --header "$(cat cookies.txt)" >>/dev/null 2>&1 ||
   for value in "${partvalue_arrVar[@]}"
@@ -62,7 +63,7 @@ if [[ $exe1 == "true" ]];then
     strippart01=$(echo $partvalue | grep -oP '(?!https:\/\/rapidgator.net\/file\/.*)\w{11}.part|\w{11}.part')
     unrar x -o+ $value >> output.md && rm $strippart01*.rar;
   done;
-  echo "done downloading OK!.You can remove $2";
+  echo "Download & Unrar Completed!";
   #rename -v 's/.rar.html/.rar/' *.rar.html; \
 
 
