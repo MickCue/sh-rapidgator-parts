@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name: Sh Rapidgator Parts
-# Version: v0.1
+# Version: v0.2
 # Date: 24-02-2022
 
 # Description: Download list of rapidgator URL's rar parts and extract automatically
@@ -45,6 +45,7 @@ while read p; do
 done <$filename
 if [[ $exe1 == "true" ]];then
   echo "Links are alive for downloads"
+
    if [[ $exe1 = true ]]; then
     echo "List of URLs are ALIVE"
   # Remove Empty
@@ -55,7 +56,8 @@ if [[ $exe1 == "true" ]];then
 
   echo 'The part01 value is: '$partvalue
   echo "Downloading..."
-  #echo 'Rar '$strippart01
+  # Remove trailing .html
+  sed -e s/.html//g -i links
   wget --show-progress --no-check-certificate -i links echo --header "$(cat cookies.txt)" >>/dev/null 2>&1 ||
   for value in "${partvalue_arrVar[@]}"
   do
