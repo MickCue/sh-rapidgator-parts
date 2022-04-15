@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name: Sh Rapidgator Parts
-# Version: v0.2
+# Version: v0.3
 # Date: 24-02-2022
 
 # Description: Download list of rapidgator URL's rar parts and extract automatically
@@ -63,13 +63,15 @@ if [[ $exe1 == "true" ]];then
   do
     echo "unraring: " $value
     strippart01=$(echo $partvalue | grep -oP '(?!https:\/\/rapidgator.net\/file\/.*)\w{11}.part|\w{11}.part')
-    unrar x -o+ $value >> output.md && rm $strippart01*.rar;
+    unrar x -o+ $value >> output.md
+    echo "File Extracted:"
+    grep mkv output.md | tail -1 | grep -oP "(\w.*).*(.mkv)"
   done;
-  echo "Download & Unrar Completed!";
-  #rename -v 's/.rar.html/.rar/' *.rar.html; \
 
+  echo "Download & Unrar Completed!";
 
   fi
 rm $1;
+rm *.rar
 
 fi
